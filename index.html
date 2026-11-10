@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="基础会计学 · 会计与财务管理基础：26 章交互式学习台，含真题全解、题库练习、公式速查。">
+<title>基础会计学 · 会计与财务管理基础｜学习台</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='3' fill='%23b04a33'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23fbfdff' font-family='serif'%3E%E4%BC%9A%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="bootWarn" role="alert" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#b04a33;color:#fffdf7;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
+  页面似乎没有正常加载。请刷新一次；若仍空白，请把 https://shang571.github.io/kuaiji-2026/ 复制到 Edge / Chrome 打开。
+</div>
+<noscript>
+  <div style="background:#fff3e2;color:#7a3b12;border-bottom:1px solid #e6c9a8;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
+    当前浏览器禁用了脚本：章节文字仍可阅读，但搜索、题库与知识图谱不可用。请改用 Edge / Chrome 打开。
+  </div>
+</noscript>
+
+<div class="readbar" id="readbar"></div>
+
+<div class="layout">
+
+<!-- ================= 侧栏 ================= -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <div class="school">Tianjin University<br>管理与经济学部</div>
+    <h1>基础会计学</h1>
+    <div class="teacher">会计与财务管理基础 · 学习台</div>
+    <div class="rule"></div>
+    <div class="rule thin"></div>
+  </div>
+
+  <button class="sb-kg" type="button" data-kg>
+    <svg viewBox="0 0 16 16"><circle cx="4" cy="4.4" r="1.6"/><circle cx="12" cy="5.2" r="1.6"/><circle cx="8" cy="12" r="1.6"/><path d="M5.4 5.3 7.1 10.5M10.8 6.3 9 10.7M5.7 4.5h4.6"/></svg>
+    <span>知识图谱</span>
+    <em>95 个知识点</em>
+  </button>
+
+  <nav class="sb-nav" id="sbnav" aria-label="章节目录">
+    <div class="nav-group">卷一 · 总论</div>
+    <a class="nav-item active" data-ch="0"><span class="n">01</span>会计概述与四大假设</a>
+    <a class="nav-item" data-ch="1"><span class="n">02</span>会计核算基础</a>
+    <a class="nav-item" data-ch="2"><span class="n">03</span>会计要素与会计等式</a>
+    <a class="nav-item" data-ch="3"><span class="n">04</span>信息质量与计量属性</a>
+
+    <div class="nav-group">卷二 · 核算方法</div>
+    <a class="nav-item" data-ch="4"><span class="n">05</span>会计科目与账户</a>
+    <a class="nav-item" data-ch="5"><span class="n">06</span>借贷记账法</a>
+    <a class="nav-item" data-ch="6"><span class="n">07</span>会计凭证与账簿</a>
+    <a class="nav-item" data-ch="7"><span class="n">08</span>会计循环与调整分录</a>
+
+    <div class="nav-group">卷三 · 业务核算</div>
+    <a class="nav-item" data-ch="8"><span class="n">09</span>资金筹集核算</a>
+    <a class="nav-item" data-ch="9"><span class="n">10</span>供应过程核算</a>
+    <a class="nav-item" data-ch="10"><span class="n">11</span>生产过程核算</a>
+    <a class="nav-item" data-ch="11"><span class="n">12</span>销售过程核算</a>
+    <a class="nav-item" data-ch="12"><span class="n">13</span>财务成果核算</a>
+
+    <div class="nav-group">卷四 · 业务核算与报告</div>
+    <a class="nav-item" data-ch="13"><span class="n">14</span>四大财务报表</a>
+    <a class="nav-item" data-ch="14"><span class="n">15</span>润叶家具 · 全流程案例</a>
+
+    <div class="nav-group">卷五 · 财务管理</div>
+    <a class="nav-item" data-ch="15"><span class="n">16</span>财务管理导论</a>
+    <a class="nav-item" data-ch="16"><span class="n">17</span>货币时间价值</a>
+    <a class="nav-item" data-ch="17"><span class="n">18</span>风险与收益</a>
+    <a class="nav-item" data-ch="18"><span class="n">19</span>资本预算决策</a>
+    <a class="nav-item" data-ch="19"><span class="n">20</span>资本成本与资本结构</a>
+    <a class="nav-item" data-ch="20"><span class="n">21</span>营运资本管理</a>
+    <a class="nav-item" data-ch="21"><span class="n">22</span>财务报表分析</a>
+    <a class="nav-item" data-ch="22"><span class="n">23</span>长期筹资与股利政策</a>
+
+    <div class="nav-group">卷六 · 备考</div>
+    <a class="nav-item" data-ch="23"><span class="n">24</span>真题全解 · 24251</a>
+    <a class="nav-item" data-ch="24"><span class="n">25</span>题库练习</a>
+    <a class="nav-item" data-ch="25"><span class="n">26</span>公式 · 分录 · 考前清单</a>
+  </nav>
+
+  <div class="sb-foot">
+    <button type="button" data-open="search" title="搜索（Ctrl K）">
+      <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.4"/><path d="M10.3 10.3 14 14"/></svg>
+      搜索
+    </button>
+    <button type="button" data-open="formula" title="公式手册">
+      <svg viewBox="0 0 16 16"><path d="M4 12c1.4 0 1.8-1 2.4-3.6C7 5.4 7.3 3 9 3M5.4 7h4.2M11 9.5c.6-1 1.2-1.3 1.8-.6.5.6.2 1.6-.3 2.4"/></svg>
+      公式
+    </button>
+    <button type="button" onclick="window.print()" title="打印本章">
+      <svg viewBox="0 0 16 16"><path d="M4.5 6V2.5h7V6M4.5 12H2.5V7h11v5h-2M4.5 10h7v4h-7z"/></svg>
+      打印
+    </button>
+  </div>
+</aside>
+<div id="navMask"></div>
+
+<!-- ================= 主区 ================= -->
+<main class="main" id="main">
+
+  <div class="topbar">
+    <div class="crumb">
+      <button class="tbtn" id="menuBtn" aria-label="打开目录">
+        <svg viewBox="0 0 16 16"><path d="M2.5 4h11M2.5 8h11M2.5 12h11"/></svg>
+      </button>
+      <span>第 <b id="curNum">01</b> 章</span>
+      <span class="div"></span>
+      <span class="now" id="curTitle">会计概述与四大假设</span>
+    </div>
+    <div class="tools">
+      <button class="tbtn" type="button" data-kg>
+        <svg viewBox="0 0 16 16"><circle cx="4" cy="4.4" r="1.6"/><circle cx="12" cy="5.2" r="1.6"/><circle cx="8" cy="12" r="1.6"/><path d="M5.4 5.3 7.1 10.5M10.8 6.3 9 10.7M5.7 4.5h4.6"/></svg>
+        <span>知识网</span>
+      </button>
+      <button class="tbtn" type="button" data-open="search">
+        <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.4"/><path d="M10.3 10.3 14 14"/></svg>
+        <span>搜索</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="tbtn" type="button" data-open="formula">
+        <svg viewBox="0 0 16 16"><path d="M4 12c1.4 0 1.8-1 2.4-3.6C7 5.4 7.3 3 9 3M5.4 7h4.2M11 9.5c.6-1 1.2-1.3 1.8-.6.5.6.2 1.6-.3 2.4"/></svg>
+        <span>公式手册</span>
+      </button>
+      <button class="tbtn" type="button" onclick="window.print()" title="打印本章">
+        <svg viewBox="0 0 16 16"><path d="M4.5 6V2.5h7V6M4.5 12H2.5V7h11v5h-2M4.5 10h7v4h-7z"/></svg>
+      </button>
+    </div>
+  </div>
+
+<!-- ==================== 01 会计概述 ==================== -->
+<div id="chMount"></div>
+<footer class="cfoot">
+  <button id="prevBtn" type="button"><span>上一章</span><em id="prevTitle">—</em></button>
+  <button id="nextBtn" class="next" type="button"><span>下一章</span><em id="nextTitle">—</em></button>
+</footer>
+
+</main>
+</div>
+
+<!-- ================= 搜索 ================= -->
+<div class="overlay" id="searchOverlay" role="dialog" aria-label="全文搜索">
+  <div class="search-panel">
+    <div class="search-top">
+      <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.4"/><path d="M10.3 10.3 14 14"/></svg>
+      <input id="searchInput" type="search" placeholder="搜索章节、公式、概念、题目…" autocomplete="off" spellcheck="false">
+      <span class="search-hint">ESC</span>
+    </div>
+    <div class="search-res" id="searchRes">
+      <div class="search-empty">输入关键词，搜索全部 25 章内容</div>
+    </div>
+    <div class="search-foot"><span>↑ ↓ 选择</span><span>Enter 跳转</span><span>Esc 关闭</span></div>
+  </div>
+</div>
+
+<!-- ================= 公式抽屉 ================= -->
+<div class="drawer" id="fxDrawer" role="dialog" aria-label="公式手册">
+  <div class="drawer-h">
+    <h3>公式手册</h3>
+    <button type="button" data-close>关闭 ✕</button>
+  </div>
+  <div class="drawer-search">
+    <input id="fxSearch" type="search" placeholder="筛选：杠杆 / WACC / 折旧 / 年金…" autocomplete="off">
+  </div>
+  <div class="drawer-body" id="fxBody"></div>
+  <div class="drawer-foot"><button type="button" id="fxGloss">看不懂符号？查看「符号与英文缩写」→</button></div>
+</div>
+
+<button class="totop" id="toTop" type="button" aria-label="回到顶部">↑</button>
+<div class="kg-overlay" id="kgOverlay" role="dialog" aria-label="知识点网络">
+  <div class="kg-head">
+    <div>
+      <div class="kg-title">知识点网络</div>
+      <div class="kg-sub">95 个知识点 · 圆形知识地图 · 点击节点查看关系</div>
+    </div>
+    <div class="kg-head-right">
+      <div class="kg-chips" id="kgChips"></div>
+      <button class="kg-mode" id="kgMode" type="button">3D 图谱</button>
+      <button class="kg-close" id="kgClose" type="button">关闭 ✕</button>
+    </div>
+  </div>
+  <div class="kg-body">
+    <aside class="kg-side">
+      <div class="kg-search"><input id="kgSearch" type="search" placeholder="搜索知识点…" autocomplete="off"></div>
+      <div id="kgList"></div>
+    </aside>
+    <div class="kg-stage" id="kgStage">
+      <canvas id="kg3d"></canvas>
+      <svg id="kgSvg" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="kg-zoom" id="kgZoom2d">
+        <button type="button" data-z="in" aria-label="放大">＋</button>
+        <button type="button" data-z="out" aria-label="缩小">－</button>
+        <button type="button" data-z="reset" aria-label="重置视图" title="重置视图">⟲</button>
+        <button type="button" data-z="relayout" aria-label="重新布局" title="重新布局">↻</button>
+      </div>
+      <div class="kg-zoom kg-zoom3" id="kgZoom3d">
+        <button type="button" data-k3="rot" aria-label="暂停旋转" title="暂停旋转">⏸</button>
+        <button type="button" data-k3="in" aria-label="放大">＋</button>
+        <button type="button" data-k3="out" aria-label="缩小">－</button>
+        <button type="button" data-k3="reset" aria-label="重置视角" title="重置视角">⟲</button>
+        <button type="button" data-k3="relayout" aria-label="重新布局" title="重新布局">↻</button>
+      </div>
+      <div class="kg-crumb">
+        <button id="kgBack" type="button">← 返回</button>
+        <span id="kgPath"></span>
+      </div>
+      <div class="kg-hint">拖拽旋转 · 滚轮缩放 · 点击节点</div>
+    </div>
+    <aside class="kg-detail" id="kgDetail"></aside>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<style>
+#navMask{display:none;}
+.cfoot button em{font-style:normal;font-size:13px;line-height:1.5;color:var(--ink2);}
+.cfoot button:disabled em{color:var(--muted);}
+.qopt.plain{cursor:default;}
+.qopt.plain:hover{border-color:var(--rule);background:var(--paper);}
+.chart-box{overflow-x:visible;}
+.chart-box canvas{max-width:none;}
+.flash{animation:flashBg 1.8s ease;}
+@keyframes flashBg{0%,100%{background:transparent;}18%{background:rgba(176,74,51,.12);}60%{background:rgba(176,74,51,.06);}}
+</style>
+
+
+
+
+
+
+<script src="chapters/vol1.js"></script>
+<script src="chapters/vol2.js"></script>
+<script src="chapters/vol3.js"></script>
+<script src="chapters/vol4.js"></script>
+<script src="chapters/vol5.js"></script>
+<script src="chapters/vol6.js"></script>
+<script>
+(function(){
+  var html=[window.__CH_VOL1,window.__CH_VOL2,window.__CH_VOL3,window.__CH_VOL4,window.__CH_VOL5,window.__CH_VOL6].join('');
+  var mount=document.getElementById('chMount');
+  if(!mount) return;
+  var tmp=document.createElement('div');
+  tmp.innerHTML=html;
+  var frag=document.createDocumentFragment();
+  while(tmp.firstChild){ frag.appendChild(tmp.firstChild); }
+  mount.parentNode.replaceChild(frag, mount);
+})();
+</script>
+<script src="app.js"></script>
+</body>
+</html>
