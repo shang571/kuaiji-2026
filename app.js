@@ -553,11 +553,6 @@ o:['生产成本','制造费用','管理费用','销售费用'],a:[1],
 e:'车间管理人员不直接生产产品，其薪酬属于间接费用，先归集到「制造费用」，期末再分配计入生产成本。厂部行政人员才计入管理费用。'}
 ];
 
-/* ---------- 组织行为学题库：由 chapters/ob.js 提供，追加到同一题库 ---------- */
-if(window.__OB_BANK && window.__OB_BANK.length){
-  BANK = BANK.concat(window.__OB_BANK);
-}
-
 /* ---------- 状态：只保存在当前页面内存中，刷新即清空 ---------- */
 var BS = { filter:'all', ans:{}, wrong:[] };
 function bsave(){ /* 不写入浏览器存储：做题痕迹不留存 */ }
@@ -571,11 +566,7 @@ function sameSet(a,b){
   return x===y;
 }
 function typeName(t){ return t==='single'?'单选':(t==='multi'?'多选':'判断'); }
-function chName(c){
-  /* 组织行为学是 26 起的新章节，章号要按本科目内部重新计数 */
-  var v = c >= 26 ? (c - 25) : (c + 1);
-  return '第 ' + (v<10?'0':'')+v + ' 章';
-}
+function chName(c){ var v=c+1; return '第 '+(v<10?'0':'')+v+' 章'; }
 
 function qCard(q, idx){
   var ans = BS.ans[q.id];
@@ -602,37 +593,24 @@ function qCard(q, idx){
     exp='<div class="qexp show'+(ok?'':' bad')+'"><b>'+(ok?'正 确':'错 误')+'</b>　正确答案：'+q.a.map(function(i){return String.fromCharCode(65+i);}).join('')+'<br>'+q.e+'</div>';
   }
   return '<div class="qcard" data-qid="'+q.id+'">'
-    +'<div class="qmeta"><span class="qnum">'+(idx+1)+'</span><span class="tag'+(q.cat==='fin'?' fin':'')+(q.cat==='ob'?' ob':'')+'">'+(q.cat==='fin'?'财管':(q.cat==='ob'?'组织':'会计'))+'</span><span>'+chName(q.ch)+'</span><span>'+typeName(q.type)+'</span></div>'
+    +'<div class="qmeta"><span class="qnum">'+(idx+1)+'</span><span class="tag'+(q.cat==='fin'?' fin':'')+'">'+(q.cat==='fin'?'财管':'会计')+'</span><span>'+chName(q.ch)+'</span><span>'+typeName(q.type)+'</span></div>'
     +'<div class="qstem">'+q.q+'</div>'
     +'<div class="qopts">'+opts+'</div>'
     +act+exp+'</div>';
 }
 
-/* ============================================================
-   科目：会计与财务管理基础（0–25） / 组织行为学（26–36）
-   ============================================================ */
-var SUBR = { acct:[0,25], ob:[26,36] };
-var SUBNAME = { acct:'会计与财务管理基础', ob:'组织行为学' };
-var QUIZ_CH = 24;          /* 两个科目共用同一个题库章，靠 SUB 过滤 */
-var SUB = null;            /* null = 还没选科目 */
-
-function subOfCh(ch){ return ch >= 26 ? 'ob' : 'acct'; }
-function inSub(ch){ return !SUB || subOfCh(ch) === SUB; }
-
 function filtered(){
   return BANK.filter(function(q){
-    if(!inSub(q.ch)) return false;
     if(BS.filter==='all') return true;
-    if(BS.filter==='acct'||BS.filter==='fin'||BS.filter==='ob') return q.cat===BS.filter;
+    if(BS.filter==='acct'||BS.filter==='fin') return q.cat===BS.filter;
     if(BS.filter==='single'||BS.filter==='multi'||BS.filter==='tf') return q.type===BS.filter;
     if(BS.filter==='wrong') return BS.wrong.indexOf(q.id)>-1;
     return true;
   });
 }
 function bankStats(){
-  var pool = BANK.filter(function(q){ return inSub(q.ch); });
   var done=0,right=0;
-  pool.forEach(function(q){
+  BANK.forEach(function(q){
     if(BS.ans[q.id]){
       done++;
       if(sameSet(BS.ans[q.id],q.a)) right++;
@@ -641,15 +619,14 @@ function bankStats(){
   var rate = done ? Math.round(right/done*100)+'%' : '—';
   var el=function(id){return document.getElementById(id);};
   if(el('bDone')) el('bDone').textContent=done;
-  if(el('bTotal')) el('bTotal').textContent=pool.length;
+  if(el('bTotal')) el('bTotal').textContent=BANK.length;
   if(el('bRight')) el('bRight').textContent=right;
   if(el('bRate')) el('bRate').textContent=rate;
-  if(el('cAll')) el('cAll').textContent=pool.length;
-  if(el('cAcct')) el('cAcct').textContent=pool.filter(function(q){return q.cat==='acct';}).length;
-  if(el('cFin')) el('cFin').textContent=pool.filter(function(q){return q.cat==='fin';}).length;
+  if(el('cAll')) el('cAll').textContent=BANK.length;
+  if(el('cAcct')) el('cAcct').textContent=BANK.filter(function(q){return q.cat==='acct';}).length;
+  if(el('cFin')) el('cFin').textContent=BANK.filter(function(q){return q.cat==='fin';}).length;
   if(el('cWrong')) el('cWrong').textContent=BS.wrong.length;
-  if(el('bFoot')) el('bFoot').textContent=pool.length;
-  var jn=el('quizJumpN'); if(jn) jn.textContent = pool.length ? pool.length+' 题' : '—';
+  if(el('bFoot')) el('bFoot').textContent=BANK.length;
 }
 function renderBank(){
   var list=document.getElementById('bankList'); if(!list) return;
@@ -657,8 +634,7 @@ function renderBank(){
   if(!arr.length){
     list.innerHTML='<div class="bank-empty">这个筛选下还没有题目。做错的题会自动出现在「错题」里。</div>';
   }else{
-    /* 编号按当前筛选重新计数，避免切科目后从 57 起跳 */
-    list.innerHTML=arr.map(function(q,i){ return qCard(q, i); }).join('');
+    list.innerHTML=arr.map(function(q){ return qCard(q, BANK.indexOf(q)); }).join('');
   }
   bankStats();
 }
@@ -774,9 +750,7 @@ function go(i, opt){
     navBox.scrollTo({top: Math.max(0,nt), behavior:'smooth'});
   }
   var cn = document.getElementById('curNum'), ct = document.getElementById('curTitle');
-  /* 组织行为学按本科目内部重新编号，避免顶栏出现「第 27 章」 */
-  var shown = (SUB==='ob' && i>=26) ? (i-25) : (i+1);
-  if(cn) cn.textContent = pad2(shown);
+  if(cn) cn.textContent = pad2(i+1);
   if(ct) ct.textContent = TITLES[i] || '';
   var pb2 = document.getElementById('prevBtn'), nb2 = document.getElementById('nextBtn');
   var pt = document.getElementById('prevTitle'), nt = document.getElementById('nextTitle');
@@ -1308,80 +1282,6 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
 /* ---------- 初始化 ---------- */
 /* 把每个图表 canvas 单独包进滚动容器：
    否则图表横向滑动时，图注和图例也会跟着被推出可视区。 */
-/* ============================================================
-   科目选择：入口分流（刷题 / 知识点复习）
-   ============================================================ */
-function applySubject(sub){
-  SUB = sub;
-  var cl = document.body.className.replace(/\bsub-(acct|ob)\b/g,'').replace(/\s+/g,' ').trim();
-  document.body.className = cl + (sub ? ' sub-' + sub : '');
-
-  /* 导航按科目过滤 */
-  var items = document.querySelectorAll('.nav-item');
-  Array.prototype.forEach.call(items, function(it){
-    it.style.display = (subOfCh(+it.getAttribute('data-ch')) === sub) ? '' : 'none';
-  });
-  var groups = document.querySelectorAll('.nav-group');
-  Array.prototype.forEach.call(groups, function(g){
-    var n = g.nextElementSibling, any = false;
-    while(n && !n.classList.contains('nav-group')){
-      if(n.classList.contains('nav-item') && n.style.display !== 'none') any = true;
-      n = n.nextElementSibling;
-    }
-    g.style.display = any ? '' : 'none';
-  });
-
-  /* 题库章文案跟着科目走 */
-  var qc = document.querySelector('.chapter[data-ch="24"] .desc');
-  if(qc) qc.textContent = sub === 'ob'
-    ? '组织行为学 · 逐章自测 · 即时判分 · 自动收集错题'
-    : '会计 + 财管交叉自测 · 即时判分 · 解析 · 自动收集错题';
-
-  /* 侧栏标题 */
-  var t = document.getElementById('sbSubject');
-  if(t) t.textContent = sub === 'ob' ? '马工程教材 · 学习台' : '会计与财务管理基础 · 学习台';
-  var h = document.querySelector('.sb-head h1');
-  if(h) h.textContent = sub === 'ob' ? '组织行为学' : '基础会计学';
-
-  /* 题库筛选回到「全部」，并按新科目重算 */
-  BS.filter = 'all';
-  var chips = document.querySelectorAll('#bankChips .chip');
-  Array.prototype.forEach.call(chips, function(c){ c.classList.toggle('active', c.getAttribute('data-f')==='all'); });
-  renderBank();
-  buildIndex();
-}
-
-function showPicker(){
-  var el = document.getElementById('subjPick');
-  if(!el) return;
-  el.style.display = 'flex';
-  el.classList.remove('is-gone');
-}
-
-function pickSubject(sub, mode){
-  applySubject(sub);
-  var el = document.getElementById('subjPick');
-  if(el){
-    el.classList.add('is-gone');
-    setTimeout(function(){ el.style.display = 'none'; }, 340);
-  }
-  if(mode === 'quiz') go(QUIZ_CH, {noScroll:true});
-  else go(SUBR[sub][0], {noScroll:true});
-  window.scrollTo(0,0);
-}
-
-document.addEventListener('click', function(e){
-  var btn = e.target.closest ? e.target.closest('[data-subj]') : null;
-  if(btn){
-    pickSubject(btn.getAttribute('data-subj'), btn.getAttribute('data-mode'));
-    return;
-  }
-  var sw = e.target.closest ? e.target.closest('#subjSwitch') : null;
-  if(sw){ showPicker(); return; }
-  var qj = e.target.closest ? e.target.closest('#quizJump') : null;
-  if(qj){ if(!SUB) applySubject('acct'); go(QUIZ_CH, {noScroll:true}); }
-});
-
 function wrapChartCanvas(){
   var list = document.querySelectorAll('.chart-box > canvas');
   Array.prototype.forEach.call(list, function(cv){
@@ -1403,15 +1303,13 @@ function wrapChartCanvas(){
   renderFx('');
   renderBank();
 
-  var start = 0, hasHash = false;
+  var start = 0;
   var m = (location.hash||'').match(/ch-(\d+)/);
-  if(m){ start = parseInt(m[1],10)-1; hasHash = true; applySubject(subOfCh(start)); }
+  if(m) start = parseInt(m[1],10)-1;
   else start = 0;
   if(!(start>=0 && start<TOTAL)) start=0;
   go(start, {noScroll:true});
   window.scrollTo(0,0);
-  /* 没有指定章节时先让用户选科目与学法 */
-  if(!hasHash) showPicker();
   document.body.setAttribute('data-booted','1');
 })();
 

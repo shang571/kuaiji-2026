@@ -3,57 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="经管学习台：会计与财务管理基础 26 章 + 组织行为学 11 章，知识点复习与刷题双入口。">
-<title>经管学习台 · 会计与财务管理基础 / 组织行为学</title>
+<meta name="description" content="基础会计学 · 会计与财务管理基础：26 章交互式学习台，含真题全解、题库练习、公式速查。">
+<title>基础会计学 · 会计与财务管理基础｜学习台</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='3' fill='%23b04a33'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23fbfdff' font-family='serif'%3E%E4%BC%9A%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
-
 <div id="bootWarn" role="alert" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#b04a33;color:#fffdf7;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
-  页面似乎没有正常加载。请刷新一次；若仍空白，请确认已通过微信登录后再访问。
+  页面似乎没有正常加载。请刷新一次；若仍空白，请把 https://shang571.github.io/kuaiji-2026/ 复制到 Edge / Chrome 打开。
 </div>
 <noscript>
   <div style="background:#fff3e2;color:#7a3b12;border-bottom:1px solid #e6c9a8;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
-    当前浏览器禁用了脚本：本站需要脚本才能完成微信登录并显示内容，请改用 Edge / Chrome 并开启脚本。
+    当前浏览器禁用了脚本：章节文字仍可阅读，但搜索、题库与知识图谱不可用。请改用 Edge / Chrome 打开。
   </div>
 </noscript>
 
 <div class="readbar" id="readbar"></div>
-
-<!-- ================= 科目选择 ================= -->
-<div class="subj" id="subjPick">
-  <div class="subj-inner">
-    <div class="subj-kicker">Tianjin University · 管理与经济学部</div>
-    <h2 class="subj-title">今天复习哪一门</h2>
-    <p class="subj-sub">先选科目，再选怎么学</p>
-
-    <div class="subj-grid">
-      <article class="subj-card">
-        <div class="subj-tag">26 章 · 56 题</div>
-        <h3>会计与财务管理基础</h3>
-        <p class="subj-desc">基础会计学四章课件、财管五章、润叶家具全流程案例、24251 真题全解</p>
-        <div class="subj-acts">
-          <button type="button" class="subj-btn" data-subj="acct" data-mode="quiz">刷题</button>
-          <button type="button" class="subj-btn primary" data-subj="acct" data-mode="review">知识点复习</button>
-        </div>
-      </article>
-
-      <article class="subj-card ob">
-        <div class="subj-tag">11 章 · 46 题</div>
-        <h3>组织行为学</h3>
-        <p class="subj-desc">马工程教材十章：个体心理与行为、动机与激励、群体与团队、领导、沟通、组织文化、组织变革</p>
-        <div class="subj-acts">
-          <button type="button" class="subj-btn" data-subj="ob" data-mode="quiz">刷题</button>
-          <button type="button" class="subj-btn primary" data-subj="ob" data-mode="review">知识点复习</button>
-        </div>
-      </article>
-    </div>
-
-    <p class="subj-foot">切换科目：侧栏顶部「换科目」</p>
-  </div>
-</div>
-
 
 <div class="layout">
 
@@ -62,8 +27,7 @@
   <div class="sb-head">
     <div class="school">Tianjin University<br>管理与经济学部</div>
     <h1>基础会计学</h1>
-    <div class="teacher" id="sbSubject">会计与财务管理基础 · 学习台</div>
-    <button class="sb-switch" id="subjSwitch" type="button">换科目</button>
+    <div class="teacher">会计与财务管理基础 · 学习台</div>
     <div class="rule"></div>
     <div class="rule thin"></div>
   </div>
@@ -75,30 +39,30 @@
   </button>
 
   <nav class="sb-nav" id="sbnav" aria-label="章节目录">
-    <div class="nav-group" data-sub="acct">卷一 · 总论</div>
+    <div class="nav-group">卷一 · 总论</div>
     <a class="nav-item active" data-ch="0"><span class="n">01</span>会计概述与四大假设</a>
     <a class="nav-item" data-ch="1"><span class="n">02</span>会计核算基础</a>
     <a class="nav-item" data-ch="2"><span class="n">03</span>会计要素与会计等式</a>
     <a class="nav-item" data-ch="3"><span class="n">04</span>信息质量与计量属性</a>
 
-    <div class="nav-group" data-sub="acct">卷二 · 核算方法</div>
+    <div class="nav-group">卷二 · 核算方法</div>
     <a class="nav-item" data-ch="4"><span class="n">05</span>会计科目与账户</a>
     <a class="nav-item" data-ch="5"><span class="n">06</span>借贷记账法</a>
     <a class="nav-item" data-ch="6"><span class="n">07</span>会计凭证与账簿</a>
     <a class="nav-item" data-ch="7"><span class="n">08</span>会计循环与调整分录</a>
 
-    <div class="nav-group" data-sub="acct">卷三 · 业务核算</div>
+    <div class="nav-group">卷三 · 业务核算</div>
     <a class="nav-item" data-ch="8"><span class="n">09</span>资金筹集核算</a>
     <a class="nav-item" data-ch="9"><span class="n">10</span>供应过程核算</a>
     <a class="nav-item" data-ch="10"><span class="n">11</span>生产过程核算</a>
     <a class="nav-item" data-ch="11"><span class="n">12</span>销售过程核算</a>
     <a class="nav-item" data-ch="12"><span class="n">13</span>财务成果核算</a>
 
-    <div class="nav-group" data-sub="acct">卷四 · 业务核算与报告</div>
+    <div class="nav-group">卷四 · 业务核算与报告</div>
     <a class="nav-item" data-ch="13"><span class="n">14</span>四大财务报表</a>
     <a class="nav-item" data-ch="14"><span class="n">15</span>润叶家具 · 全流程案例</a>
 
-    <div class="nav-group" data-sub="acct">卷五 · 财务管理</div>
+    <div class="nav-group">卷五 · 财务管理</div>
     <a class="nav-item" data-ch="15"><span class="n">16</span>财务管理导论</a>
     <a class="nav-item" data-ch="16"><span class="n">17</span>货币时间价值</a>
     <a class="nav-item" data-ch="17"><span class="n">18</span>风险与收益</a>
@@ -108,30 +72,11 @@
     <a class="nav-item" data-ch="21"><span class="n">22</span>财务报表分析</a>
     <a class="nav-item" data-ch="22"><span class="n">23</span>长期筹资与股利政策</a>
 
-    <div class="nav-group" data-sub="acct">卷六 · 备考</div>
+    <div class="nav-group">卷六 · 备考</div>
     <a class="nav-item" data-ch="23"><span class="n">24</span>真题全解 · 24251</a>
     <a class="nav-item" data-ch="24"><span class="n">25</span>题库练习</a>
     <a class="nav-item" data-ch="25"><span class="n">26</span>公式 · 分录 · 考前清单</a>
-
-    <div class="nav-group" data-sub="ob">卷七 · 组织行为学</div>
-    <a class="nav-item" data-ch="26" data-sub="ob"><span class="n">01</span>组织与组织行为学</a>
-    <a class="nav-item" data-ch="27" data-sub="ob"><span class="n">02</span>个体心理与行为</a>
-    <a class="nav-item" data-ch="28" data-sub="ob"><span class="n">03</span>动机与激励</a>
-    <a class="nav-item" data-ch="29" data-sub="ob"><span class="n">04</span>群体心理与行为</a>
-    <a class="nav-item" data-ch="30" data-sub="ob"><span class="n">05</span>团队</a>
-    <a class="nav-item" data-ch="31" data-sub="ob"><span class="n">06</span>领导</a>
-    <a class="nav-item" data-ch="32" data-sub="ob"><span class="n">07</span>沟通</a>
-    <a class="nav-item" data-ch="33" data-sub="ob"><span class="n">08</span>组织文化</a>
-    <a class="nav-item" data-ch="34" data-sub="ob"><span class="n">09</span>组织学习与创新</a>
-    <a class="nav-item" data-ch="35" data-sub="ob"><span class="n">10</span>组织变革与发展</a>
-    <a class="nav-item" data-ch="36" data-sub="ob"><span class="n">11</span>个人与组织的关系</a>
   </nav>
-
-  <button class="sb-quiz" id="quizJump" type="button" title="直接进入题库">
-    <svg viewBox="0 0 16 16"><path d="M3 3.5h10M3 8h10M3 12.5h6"/></svg>
-    <span>刷题</span>
-    <em id="quizJumpN">—</em>
-  </button>
 
   <div class="sb-foot">
     <button type="button" data-open="search" title="搜索（Ctrl K）">
@@ -288,11 +233,9 @@
 <script src="chapters/vol4.js"></script>
 <script src="chapters/vol5.js"></script>
 <script src="chapters/vol6.js"></script>
-<script src="chapters/ob.js"></script>
 <script>
-/* 章节挂载 + 交互启动：页面加载后立即调用一次（本版本无登录门禁）。 */
-window.__bootStudyApp = function(){
-  var html=[window.__CH_VOL1,window.__CH_VOL2,window.__CH_VOL3,window.__CH_VOL4,window.__CH_VOL5,window.__CH_VOL6,window.__CH_OB||''].join('');
+(function(){
+  var html=[window.__CH_VOL1,window.__CH_VOL2,window.__CH_VOL3,window.__CH_VOL4,window.__CH_VOL5,window.__CH_VOL6].join('');
   var mount=document.getElementById('chMount');
   if(!mount) return;
   var tmp=document.createElement('div');
@@ -300,22 +243,8 @@ window.__bootStudyApp = function(){
   var frag=document.createDocumentFragment();
   while(tmp.firstChild){ frag.appendChild(tmp.firstChild); }
   mount.parentNode.replaceChild(frag, mount);
-
-  /* app.js 要在章节就位后加载，且全局只加载一次 */
-  if(document.getElementById('appRuntime')) return;
-  var s=document.createElement('script');
-  s.id='appRuntime';
-  s.src='app.js';
-  document.body.appendChild(s);
-};
-</script>
-<script>
-/* GitHub Pages 版本：无登录门禁，章节就位后直接启动交互脚本 */
-(function(){
-  function boot(){ if(typeof window.__bootStudyApp === 'function') window.__bootStudyApp(); }
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
 })();
 </script>
+<script src="app.js"></script>
 </body>
 </html>
