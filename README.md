@@ -2,8 +2,8 @@
 
 26 章交互式学习页，覆盖会计学原理与财务管理两条主线。
 
-- **在线访问**：https://shang571.github.io/kuaiji-2026/
-- **离线版本**：本地单文件母版 `基础会计学_课件对齐版.html`（约 950 KB，插图 base64 内嵌，双击即开）
+- **在线访问**：https://shang571.github.io/kuaiji-2026/ （公开版，无登录门禁）
+- **离线版本**：本地单文件母版 `基础会计学_课件对齐版.html`（约 950 KB，插图 base64 内嵌，双击即开；离线版不含登录门禁，仅自用）
 
 ---
 
@@ -37,26 +37,38 @@
 线上为多文件结构，本地母版为单文件：
 
 ```
-index.html          12 KB    骨架 + loader
-app.css             45 KB    全站样式
-app.js             126 KB    交互 / 图表 / 题库 / 知识图谱
+index.html          骨架 + loader + 登录门禁 DOM
+app.css             全站样式（含门禁样式）
+app.js              交互 / 图表 / 题库 / 知识图谱
+auth.js             微信扫码登录门禁（WorkBuddy 云服务）
 chapters/
   vol1.js  vol2.js  vol3.js  vol4.js  vol5.js  vol6.js    按卷切分的章节 HTML
 assets/
   fig-01.jpg  fig-02.jpg  fig-03.jpg                      AI 插画
 ```
 
-`chapters/volN.js` 各自导出 `window.__CH_VOLN`，由 `index.html` 的 loader 用 `DocumentFragment` 在原位插入。
+`chapters/volN.js` 各自导出 `window.__CH_VOLN`，由 `index.html` 的 `window.__bootStudyApp()` 用 `DocumentFragment` 在原位插入；该函数由 `auth.js` 在鉴权通过后调用一次，所以未登录时章节不会进入 DOM。
+
+## 登录门禁
+
+进入站点前需要微信扫码登录（WorkBuddy 云服务 · 微信网站授权）。
+
+- SDK 走 CDN：`@tencent-ai/workbuddy-cloud-sdk`，全局 `WorkBuddyCloud`，无构建步骤
+- 配置写在 `auth.js` 顶部：`endpoint` / `publishableKey` / `oauthRelayBaseUrl`（三者缺一不可，微信授权依赖 `oauthRelayBaseUrl`）
+- 流程：启动时先处理 URL 上的 `code/state/provider` 回调 → `handleWechatWebCallback()` 换会话 → 成功则清掉这三个参数并进入站点；否则 `getSession()` 恢复会话，无会话显示登录卡
+- `redirectTo` 只能是站点根（`location.origin`）：静态托管下回调落到子路径会先 404，code 会丢
+- 退出登录调用 `signOut()`，`onAuthStateChange` 的 `SIGNED_OUT` 会重新盖上门禁
+- 本地 `file://` 打开无法完成微信授权（平台边界，不做 mock 降级）
 
 ## 技术要点
 
-**零依赖** — 无框架、无构建步骤、无 CDN。全部图表由 Canvas 2D 手绘，知识图谱为自研力导向 + 环形布局。
+**零构建** — 无框架、无打包器。全部图表由 Canvas 2D 手绘，知识图谱为自研力导向 + 环形布局。唯一外部脚本是登录用的云服务 SDK（CDN 引入，不参与构建）。
 
 **图表响应式** — `prep()` 测宽读父容器并扣除 padding，canvas 宽度完全由 JS 内联控制。设 `MINW = 620` 作为可读性下限：窄屏宁可横向滑动，也不把字号压到 5px。`.cv-scroll` 包裹层保证图注不被 `scrollLeft` 推走。
 
-**旧内核兼容** — 避免 `inset`、CSS Grid、`padStart`、`clamp()` 等较新特性，改用 top/right/bottom/left + flex + 手写补零，以适配微信内置浏览器。
+**无痕设计** — 学习痕迹不落盘：题库作答、错题、背诵勾选只存内存，刷新即清空。唯一的持久化数据是云 SDK 自己维护的登录会话。
 
-**无痕设计** — 不写 localStorage、不改 URL hash。题库作答、错题、背诵勾选只存内存，刷新即清空。
+**旧内核兼容** — 避免 `inset`、CSS Grid、`padStart`、`clamp()` 等较新特性（门禁样式同样用 top/right/bottom/left 定位），改用 flex + 手写补零，以适配微信内置浏览器。
 
 ## 本地开发
 
