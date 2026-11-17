@@ -32,6 +32,11 @@
     <div class="rule thin"></div>
   </div>
 
+  <button class="sb-kg sb-ov" id="ovBtn" type="button">
+    <svg viewBox="0 0 16 16"><path d="M2.5 3.5h4v4h-4zM9.5 3.5h4v2.4h-4zM2.5 9.1h4v3.4h-4zM9.5 7.5h4v5h-4z"/></svg>
+    <span>课程总览</span>
+    <em>11 篇 · 30 章</em>
+  </button>
   <button class="sb-kg" type="button" data-kg>
     <svg viewBox="0 0 16 16"><circle cx="4" cy="4.4" r="1.6"/><circle cx="12" cy="5.2" r="1.6"/><circle cx="8" cy="12" r="1.6"/><path d="M5.4 5.3 7.1 10.5M10.8 6.3 9 10.7M5.7 4.5h4.6"/></svg>
     <span>知识图谱</span>
@@ -62,21 +67,31 @@
     <a class="nav-item" data-ch="13"><span class="n">14</span>四大财务报表</a>
     <a class="nav-item" data-ch="14"><span class="n">15</span>润叶家具 · 全流程案例</a>
 
-    <div class="nav-group">卷五 · 财务管理</div>
+    <div class="nav-group">卷五 · 财务管理基础</div>
     <a class="nav-item" data-ch="15"><span class="n">16</span>财务管理总论</a>
     <a class="nav-item" data-ch="16"><span class="n">17</span>财务管理的价值观念</a>
     <a class="nav-item" data-ch="17"><span class="n">18</span>财务分析</a>
     <a class="nav-item" data-ch="18"><span class="n">19</span>财务战略与预算</a>
+
+    <div class="nav-group">卷六 · 筹资管理</div>
     <a class="nav-item" data-ch="19"><span class="n">20</span>长期筹资方式</a>
     <a class="nav-item" data-ch="20"><span class="n">21</span>资本结构决策</a>
+
+    <div class="nav-group">卷七 · 投资管理</div>
     <a class="nav-item" data-ch="21"><span class="n">22</span>投资决策原理</a>
     <a class="nav-item" data-ch="22"><span class="n">23</span>投资决策实务</a>
+
+    <div class="nav-group">卷八 · 营运资本管理</div>
     <a class="nav-item" data-ch="23"><span class="n">24</span>短期资产管理</a>
     <a class="nav-item" data-ch="24"><span class="n">25</span>短期筹资管理</a>
+
+    <div class="nav-group">卷九 · 股利政策</div>
     <a class="nav-item" data-ch="25"><span class="n">26</span>股利理论与政策</a>
+
+    <div class="nav-group">卷十 · 并购与重组</div>
     <a class="nav-item" data-ch="26"><span class="n">27</span>并购与重组</a>
 
-    <div class="nav-group">卷六 · 备考</div>
+    <div class="nav-group">卷十一 · 备考</div>
     <a class="nav-item" data-ch="27"><span class="n">28</span>真题全解 · 24251</a>
     <a class="nav-item" data-ch="28"><span class="n">29</span>题库练习</a>
     <a class="nav-item" data-ch="29"><span class="n">30</span>公式 · 分录 · 考前清单</a>
@@ -97,6 +112,22 @@
     </button>
   </div>
 </aside>
+
+<!-- ================= 课程总览 ================= -->
+<div class="ov" id="ovOverlay" role="dialog" aria-modal="true" aria-label="课程总览">
+  <div class="ov-panel">
+    <div class="ov-head">
+      <div>
+        <div class="ov-kicker">Course Map</div>
+        <h2 class="ov-title">课程总览</h2>
+        <p class="ov-sub">会计 15 章 · 财务管理 12 章 · 备考 3 章</p>
+      </div>
+      <button class="ov-close" id="ovClose" type="button" aria-label="关闭">×</button>
+    </div>
+    <div class="ov-body" id="ovBody"></div>
+  </div>
+</div>
+
 <div id="navMask"></div>
 
 <!-- ================= 主区 ================= -->
@@ -249,6 +280,12 @@
   mount.parentNode.replaceChild(frag, mount);
 })();
 </script>
-<script src="app.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/bank.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/kg2d.js"></script>
+<script src="js/kg3d.js"></script>
+<script src="js/overview.js"></script>
+<script src="js/boot.js"></script>
 </body>
 </html>
